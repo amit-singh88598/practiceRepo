@@ -25,9 +25,14 @@ import React, { useState } from "react";
 
 function ChildComponent(props) {
   const [count, setCount] = useState(0);
+  const [name, setName] = useState();
 
   const handleClick = () => {
     setCount(count + 1);
+  };
+
+  const handleChange = (event) => {
+    setName(event.target.value);
   };
 
   return (
@@ -37,7 +42,23 @@ function ChildComponent(props) {
       </Typography>
       <div>
         <p>You clicked {count} times</p>
-        <Button onClick={handleClick}>Click me</Button>
+        <Button variant="outlined" onClick={handleClick}>
+          Click me
+        </Button>
+      </div>
+      <div style={{ display: "flex", marginTop: 20 }}>
+        <Typography style={{ marginRight: 20, marginTop: 20 }}>
+          {name ? (
+            <Typography>My Name is {name}</Typography>
+          ) : (
+            "Please Type Your Name ? "
+          )}
+        </Typography>
+        <TextField
+          onChange={handleChange}
+          id="standard-basic"
+          label="Standard"
+        />
       </div>
     </div>
   );
